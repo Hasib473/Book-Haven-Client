@@ -4,7 +4,6 @@ import frictionimg from '../../assets/1_rEITYNiAIBMp2i26kKUpig.webp'
 import mysteriimg from '../../assets/mysteri.webp'
 import romanceimg from '../../assets/romance.webp'
 import fantacyimg from '../../assets/Fantacy.webp'
-import bookimg from '../../assets/boi.jpg'
 
 // =============================
 // Top Genres Component
@@ -54,7 +53,7 @@ export function BookOfTheWeek() {
     
   {/* Image */}
 <div className="relative mx-auto w-full max-w-sm">
-  <div className="absolute -inset-4 rounded-3xl bg-indigo-600/10 blur-2xl" />
+  <div className="absolute -inset-4 rounded-3xl " />
 
   <div className="relative z-10 aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl">
     <img
@@ -72,11 +71,11 @@ export function BookOfTheWeek() {
         ⭐ Book of the Week
       </span>
 
-      <h2 className="mb-4 text-4xl font-bold leading-tight text-gray-900">
+      <h2 className="mb-4 text-4xl font-bold leading-tight">
         The Silent Library
       </h2>
 
-      <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600">
+      <p className="mb-8 max-w-xl text-lg leading-relaxed ">
         A beautifully written story exploring mystery, friendship, and the
         quiet power of knowledge hidden inside forgotten books.
       </p>
@@ -102,20 +101,20 @@ export function BookOfTheWeek() {
 // =============================
 export function AboutBookHaven() {
   return (
-   <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-white py-28">
+   <section className="relative overflow-hidden  py-28">
   {/* Decorative blur */}
-  <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-indigo-300/30 blur-3xl" />
+  <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl" />
 
   <div className="relative mx-auto max-w-4xl px-6 text-center animate-fade-up">
     <span className="mb-4 inline-block rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-semibold text-indigo-700">
       About Us
     </span>
 
-    <h2 className="mb-6 text-4xl font-bold tracking-tight text-gray-900">
+    <h2 className="mb-6 text-4xl font-bold tracking-tight ">
       About The Book Haven
     </h2>
 
-    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
+    <p className="mx-auto max-w-2xl text-lg leading-relaxed ">
       The Book Haven is your digital sanctuary for discovering, creating, and
       sharing books. Whether you’re a passionate reader or an aspiring writer,
       we bring stories closer to the people who love them.

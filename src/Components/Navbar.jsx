@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logoimg from '../assets/bhtext logo.png'
 
 const Navbar = () => {
-    return (
+
+const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+
+    
+ return (
         <div className="navbar bg-base-100 shadow-sm max-w-7xl mx-auto px-4
 ">
 <div className="navbar-start gap-2">
@@ -61,9 +78,10 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-4">
     {/* theme */}
-    <label className="swap swap-rotate">
+    <label onClick={(e) => handleTheme(e.target.checked)}   className="swap swap-rotate">
   {/* this hidden checkbox controls the state */}
-  <input type="checkbox" className="theme-controller" value="synthwave" />
+  <input type="checkbox"            defaultChecked={localStorage.getItem('theme') === "light"}
+ className="theme-controller" value="synthwave" />
 
   {/* sun icon */}
   <svg
