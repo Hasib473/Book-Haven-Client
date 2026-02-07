@@ -72,7 +72,7 @@ export function BookOfTheWeek() {
       </span>
 
       <h2 className="mb-4 text-4xl font-bold leading-tight">
-        The Silent Library
+        The Great Gatsby: A Timeless Classic of the Jazz Age
       </h2>
 
       <p className="mb-8 max-w-xl text-lg leading-relaxed ">
