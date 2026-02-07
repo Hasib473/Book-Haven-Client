@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
 import AllBooks from "../Pages/AllBooks";
 import AddBook from "../Pages/AddBook";
+import Login from "../Pages/Login";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
             {
                 path:'/add-books',
                 Component: AddBook
+            },
+
+            {
+                path:'/login',
+                Component: Login
             }
         ]
     }
