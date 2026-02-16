@@ -8,12 +8,12 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-4xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-600">Login to continue to The Book Haven</p>
+          <h1 className="mb-2 text-4xl font-bold text-default">Welcome Back</h1>
+          <p className="text-default">Login to continue to The Book Haven</p>
         </div>
 
         {/* Form Card */}
-        <div className="rounded-3xl bg-white p-8 shadow-xl">
+        <div className="rounded-3xl p-8 shadow-3xl">
           <form className="space-y-6">
             {/* Email */}
             <div>
@@ -29,7 +29,7 @@ export default function Login() {
 
             {/* Password */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
+              <label className="mb-2 block text-sm font-medium ">
                 Password
               </label>
               <input
