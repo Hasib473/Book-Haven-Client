@@ -5,7 +5,7 @@ import AuthContext from '../Context/AuthContext';
 
 const Navbar = () => {
 
-  const {user , setUser} = useContext(AuthContext);
+  const {user } = useContext(AuthContext);
   console.log(user);
 
 
@@ -100,8 +100,53 @@ const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
       d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
   </svg>
 </label>
-    <NavLink className="btn btn-secondary" to="/login">Login</NavLink>
+    {
+      user ? (
+                        <div className="relative dropdown dropdown-end">
+                            {/* Avatar Button */}
+                            <button tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <img
+                                    className="w-10 h-10 rounded-full object-cover border"
+                                    src={user.photoURL || "https://i.ibb.co/2kRZyq0/user.png"}
+                                    alt="User"
+                                    title={user.displayName || user.email}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                            >
+                                <li className="px-2 py-1 text-sm font-semibold">
+                                    {user.displayName || "User"}
+                                </li>
+                                <li className="text-xs px-2 text-gray-500">{user.email}</li>
+                                <li>
+                                    <NavLink to="/my-profile" className="hover:bg-gray-100">
+                                        My Profile
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/update-profile" className="hover:bg-gray-100">
+                                        Update Profile
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <button
+                                  
+                                        className="text-red-500 w-full text-left hover:bg-gray-100"
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    ): <div className ='space-x-2'>
+      <NavLink className="btn btn-secondary" to="/login">Login</NavLink>
     <NavLink className="btn btn-secondary" to="/registration">Register</NavLink>
+    </div>
+    }
   </div>
 </div>
     );
