@@ -20,10 +20,10 @@ export default function Banner() {
         </p>
 
         <div className="flex justify-center gap-4">
-          <a className="rounded-full bg-white px-8 py-3 text-indigo-700 font-semibold">
+          <a className="rounded-full bg-white px-8 py-3 text-indigo-700 font-semibold cursor-pointer">
             All Books
           </a>
-          <a className="rounded-full border border-white px-8 py-3 font-semibold">
+          <a className="rounded-full border border-white px-8 py-3 font-semibold cursor-pointer ">
             Create Book
           </a>
         </div>

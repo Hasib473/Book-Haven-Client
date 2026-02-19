@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../Components/Home/Banner';
-import { AboutBookHaven, BookOfTheWeek, TopGenres } from '../Components/Home/HomeSection';
+import { BookOfTheWeek, TopGenres } from '../Components/Home/HomeSection';
 
 const Home = () => {
     return (
@@ -9,7 +9,7 @@ const Home = () => {
             <div>
             <TopGenres/>
             <BookOfTheWeek/>
-            <AboutBookHaven/>
+           
             </div>
         </div>
     );

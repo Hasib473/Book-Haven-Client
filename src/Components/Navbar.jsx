@@ -97,7 +97,7 @@ const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   </svg>
 </label>
     <NavLink className="btn btn-secondary" to="/login">Login</NavLink>
-    <a className="btn btn-secondary">Register</a>
+    <NavLink className="btn btn-secondary" to="/registration">Register</NavLink>
   </div>
 </div>
     );

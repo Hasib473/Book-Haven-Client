@@ -49,6 +49,10 @@ export function TopGenres() {
 export function BookOfTheWeek() {
   return (
     <section className="relative py-24 ">
+
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold">Book of <span className="text-violet-600">the Week</span></h2>
+      </div>
   <div className="mx-auto grid max-w-6xl items-center gap-14  md:grid-cols-2">
     
   {/* Image */}
@@ -96,49 +100,4 @@ export function BookOfTheWeek() {
   );
 }
 
-// =============================
-// About The Book Haven Component
-// =============================
-export function AboutBookHaven() {
-  return (
-   <section className="relative overflow-hidden  py-28">
-  {/* Decorative blur */}
-  <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl" />
 
-  <div className="relative mx-auto max-w-4xl px-6 text-center animate-fade-up">
-    <span className="mb-4 inline-block rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-semibold text-indigo-700">
-      About Us
-    </span>
-
-    <h2 className="mb-6 text-4xl font-bold tracking-tight ">
-      About The Book Haven
-    </h2>
-
-    <p className="mx-auto max-w-2xl text-lg leading-relaxed ">
-      The Book Haven is your digital sanctuary for discovering, creating, and
-      sharing books. Whether you’re a passionate reader or an aspiring writer,
-      we bring stories closer to the people who love them.
-    </p>
-  </div>
-
-  {/* Animation */}
-  <style jsx global>{`
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-up {
-      animation: fadeUp 1s ease-out both;
-    }
-  `}</style>
-</section>
-
-  );
-}
