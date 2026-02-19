@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { NavLink } from 'react-router';
 import { toast } from 'react-toastify';
+import AuthContext from '../Context/AuthContext';
 
 const Registrantion = () => {
+    const {SingInWithGoogleFunction, setUser, setLoading} =useContext(AuthContext);
+
 
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -23,9 +26,26 @@ const Registrantion = () => {
             return;
         }
 
-        const user = {name, email, photo, password};
+        
 
+        const user = {name, email, photo, password};
         console.log(user);
+
+       
+    }
+
+    const handlegoogleLogin = () => {
+        SingInWithGoogleFunction()
+        .then(result => {
+            const user = result.user;
+            setUser(user);
+            setLoading(false);
+            toast.success("Google login successful");
+        })
+        .catch(error => {
+            console.error("Google login error:", error);
+            toast.error("Google login failed");
+        });
     }
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
@@ -84,7 +104,7 @@ const Registrantion = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        <button
+        <button onClick={handlegoogleLogin}
           className="w-full btn-secondary  flex items-center justify-center border-gray-300 py-2 cursor-pointer rounded-lg font-medium hover: transition duration-300"
         >
          <FaGoogle className="mr-2"/> Login with Google

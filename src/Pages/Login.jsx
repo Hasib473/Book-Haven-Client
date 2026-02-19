@@ -1,8 +1,27 @@
 // pages/Login.jsx
-import React from "react";
+import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
+import AuthContext from "../Context/AuthContext";
 
 export default function Login() {
+  const {SingInWithGoogleFunction , setUser ,setLoading} = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    
+  }
+
+ const handleGoogleLogin = () => { 
+SingInWithGoogleFunction ()  
+   .then(result => {
+        const user = result.user; 
+        setUser(user);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Google login error:", error);
+      });
+    }
   return (
     <section className="flex min-h-screen items-center justify-center  px-4">
       <div className="w-full max-w-md">
@@ -14,7 +33,7 @@ export default function Login() {
 
         {/* Form Card */}
         <div className="rounded-3xl p-8 shadow-3xl">
-          <form className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             {/* Email */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -53,8 +72,7 @@ export default function Login() {
             >
               Login
             </button>
-            <button
-              type="submit"
+            <button onClick={handleGoogleLogin}
               className="flex items-center justify-center w-full rounded-full px-6 py-3 text-sm font-semibold  shadow-lg transition cursor-pointer"
             >
               <FaGoogle className="mr-2"/> Login With Google

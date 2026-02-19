@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import logoimg from '../assets/bhtext logo.png'
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 import NavItem from './NavItem';
+import AuthContext from '../Context/AuthContext';
 
 const Navbar = () => {
+
+  const {user , setUser} = useContext(AuthContext);
+  console.log(user);
+
 
 const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
