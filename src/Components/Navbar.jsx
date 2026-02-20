@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink , useNavigate } from 'react-router';
 import NavItem from './NavItem';
 import AuthContext from '../Context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { auth } from '../firebase/firebase.config';
+
 
 const Navbar = () => {
+    const nevigate = useNavigate();
 
-  const {user } = useContext(AuthContext);
+  const {user , setUser } = useContext(AuthContext);
   console.log(user);
 
 
@@ -22,6 +27,18 @@ const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
+
+   const handleSignout = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null);
+                toast.success('Signout successful');
+                nevigate('/login');
+            }).catch((err) => {
+                console.log(err);
+                toast.error(err.message);
+            })
+    }
 
 
     
@@ -133,7 +150,7 @@ const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <button
+                                    <button onClick={handleSignout}
                                   
                                         className="text-red-500 w-full text-left hover:bg-gray-100"
                                     >
