@@ -89,7 +89,7 @@ const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
         <NavItem to="/all-books">All Books</NavItem>
       
       <NavItem to="/add-books">Add Books</NavItem>    
-     <NavItem to="/my-books">My Books</NavItem>
+     <NavItem to="/mybooks">My Books</NavItem>
     </ul>
   </div>
   <div className="navbar-end gap-4">

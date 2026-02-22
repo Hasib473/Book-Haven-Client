@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import AuthContext from '../Context/AuthContext';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Firebase/firebase.config';
 
 const Registrantion = () => {
+    const nevigate = useNavigate();
     const {SingInWithGoogleFunction, setUser, setLoading} =useContext(AuthContext);
 
 
@@ -26,13 +29,31 @@ const Registrantion = () => {
             return;
         }
 
+          
+        
+
         
 
         const user = {name, email, photo, password};
         console.log(user);
 
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(result => {
+            const user = result.user;
+            setUser(user);
+            setLoading(false);
+            toast.success("Registration successful");
+            nevigate('/');
+        })
+        .catch(error => {
+            console.error("Registration error:", error);
+            toast.error("Registration failed");
+        });
+
        
     }
+
+  
 
     const handlegoogleLogin = () => {
         SingInWithGoogleFunction()
@@ -41,6 +62,7 @@ const Registrantion = () => {
             setUser(user);
             setLoading(false);
             toast.success("Google login successful");
+            nevigate('/');
         })
         .catch(error => {
             console.error("Google login error:", error);

@@ -2,21 +2,43 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import AuthContext from "../Context/AuthContext";
+import { useNavigate } from "react-router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Firebase/firebase.config";
+import { toast } from "react-toastify";
 
 export default function Login() {
+  const nevigate = useNavigate();
   const {SingInWithGoogleFunction , setUser ,setLoading} = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        const user = result.user;
+        setUser(user);
+        setLoading(false);
+        toast.success("Login successful");
+        nevigate('/');
+      })
+      .catch(error => {
+        toast.error("Login failed: " + error.message);
+        console.error("Email and password login error:", error);
+      });
   }
 
  const handleGoogleLogin = () => { 
 SingInWithGoogleFunction ()  
    .then(result => {
-        const user = result.user; 
+        const user = result.user;
         setUser(user);
         setLoading(false);
+         nevigate('/'); 
+        
       })
       .catch(error => {
         console.error("Google login error:", error);
@@ -41,6 +63,7 @@ SingInWithGoogleFunction ()
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="you@example.com"
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
               />
@@ -53,6 +76,7 @@ SingInWithGoogleFunction ()
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="••••••••"
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
               />
