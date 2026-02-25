@@ -1,6 +1,7 @@
 // pages/AddBook.jsx
 import React, { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 export default function AddBook() {
   const {user } = useContext(AuthContext);
@@ -27,11 +28,10 @@ export default function AddBook() {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Book added successfully:", data);  
+      toast.success("Book added successfully");
     } )
     .catch(error => {
-      console.error("Error adding book:", error);
-    });
+toast.error("Failed to add book: " + error.message);});
   }
   return (
     <section className="min-h-screen  py-20">

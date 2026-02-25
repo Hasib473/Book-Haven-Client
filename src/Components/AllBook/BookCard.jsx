@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const BookCard = ({ book }) => {
   const { title, author, genre, rating, summary, coverImage } = book;
@@ -39,9 +40,9 @@ const BookCard = ({ book }) => {
             : summary}
         </p>
 
-        <button className="mt-4 bg-violet-600 cursor-pointer text-white py-2 rounded-lg hover:bg-blue-700 transition">
+        <Link to={`/book-details/${book._id}`} className="mt-4 text-center bg-violet-600 cursor-pointer text-white py-2 rounded-lg hover:bg-blue-700 transition">
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
