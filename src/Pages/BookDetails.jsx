@@ -6,7 +6,11 @@ const BookDetails = () => {
   const [book, setBook] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/allbooks/${id}`)
+    fetch(`http://localhost:3000/allbooks/${id}`,{
+      headers: {
+        authorization: "hello"
+      }
+    })
       .then((res) => res.json())
       .then((data) => setBook(data));
   }, [id]);
