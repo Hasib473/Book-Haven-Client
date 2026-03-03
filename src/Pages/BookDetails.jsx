@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import AuthContext from "../Context/AuthContext";
 
 const BookDetails = () => {
-  const { id } = useParams();
   const [book, setBook] = useState(null);
+  const {user} = useContext(AuthContext)
+
+  const {id} = useParams();
 
   useEffect(() => {
     fetch(`http://localhost:3000/allbooks/${id}`,{
       headers: {
-        authorization: "hello"
+        authorization: `Bearer ${user?.accessToken}`
       }
     })
       .then((res) => res.json())
-      .then((data) => setBook(data));
+      .then((data) => {
+        setBook(data);
+        console.log(data);
+      });
   }, [id]);
 
   if (!book) {
