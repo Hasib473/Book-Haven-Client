@@ -17,7 +17,7 @@ export function TopGenres() {
   ];
 
   return (
-    <section className=" py-16">
+    <section className=" py-16 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-900 mt-10 ">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="mb-10 text-center text-3xl font-bold">Top <span className="text-violet-600">Genres</span></h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
@@ -48,7 +48,7 @@ export function TopGenres() {
 // =============================
 export function BookOfTheWeek() {
   return (
-    <section className="relative py-24 ">
+    <section className="relative py-24  dark:bg-gray-900 bg-gray-50   mt-10">
 
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold">Book of <span className="text-violet-600">the Week</span></h2>

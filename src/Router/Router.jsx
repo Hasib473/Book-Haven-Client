@@ -9,71 +9,73 @@ import MyBooks from "../Pages/MyBooks";
 import PrivateRoute from "./PrivateRoute";
 import BookDetails from "../Pages/BookDetails";
 import UpdateBook from "../Pages/UpdateBook";
+import NotFound from "../Pages/NotFound";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        Component: MainLayout,
-        children: [
-            {
-                index: true, 
-                Component: Home
-            },
-            {
-                path:'/all-books',
-                Component: AllBooks,
-                loader: () => fetch('http://localhost:3000/allbooks')
-            },
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/all-books",
+        Component: AllBooks,
+        loader: () => fetch("http://localhost:3000/allbooks"),
+      },
 
-            {
-                path:'/add-books',
-                element:(
-                    <PrivateRoute>
-                        <AddBook/>
-                    </PrivateRoute>
-                    
-                )
-            },
+      {
+        path: "/add-books",
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
+      },
 
-            {
-                path:'/book-details/:id',
-                element:(
-                    <PrivateRoute>
-                        <BookDetails/>
-                    </PrivateRoute>
-                )
+      {
+        path: "/book-details/:id",
+        element: (
+          <PrivateRoute>
+            <BookDetails />
+          </PrivateRoute>
+        ),
+      },
 
-            },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/registration",
+        Component: Registrantion,
+      },
+      {
+        path: "update-book/:id",
 
+        element: (
+          <PrivateRoute>
+            <UpdateBook />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/mybooks",
+        element: (
+          <PrivateRoute>
+            <MyBooks />
+          </PrivateRoute>
+        ),
+      },
 
-            {
-                path:'/login',
-                Component: Login
-            },
-            {
-                path:'/registration',
-                Component: Registrantion
-            },
-            {
-                path:'update-book/:id',
-
-                element:(
-                    <PrivateRoute>
-                        <UpdateBook/>
-                    </PrivateRoute>
-                )
-                       
-            },
-          {
-  path: "/mybooks",
-  element: (
-    <PrivateRoute>
-      <MyBooks />
-    </PrivateRoute>
-  )
-}
-        ]
-    }
+      {
+        path: "*",
+        Component: NotFound
+      }
+    ],
+  },
 ]);
 
 export default router;

@@ -27,6 +27,7 @@ const Footer = () => {
     <a className="link link-hover">Cookie policy</a>
   </nav>
 </footer>
+
 <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
   <aside className="grid-flow-col items-center">
     <img src={footerimg} alt="Book Haven Logo" className="w-20 h-15" />
@@ -34,8 +35,11 @@ const Footer = () => {
       ACME Industries Ltd.
       <br />
       Providing reliable tech since 1992
+      <br />
+      © 2026 Book Haven. All rights reserved.
     </p>
   </aside>
+
   <nav className="md:place-self-center md:justify-self-end">
     <div className="grid grid-flow-col gap-4">
       <a>

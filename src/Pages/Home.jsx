@@ -25,7 +25,7 @@ const Home = () => {
       <Banner />
       <div>
         <div>
-          <h1 className="text-3xl text-center font-bold text-gray-800 mt-6 mb-6">
+          <h1 className="text-3xl text-center font-bold text-gray-800 mt-6 mb-6 dark:text-gray-200">
             Latest <span className="text-violet-600">Books</span> 
           </h1>
 

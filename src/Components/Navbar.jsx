@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="navbar bg-base-100 shadow-sm max-w-7xl mx-auto px-4
+      className="navbar  shadow-sm max-w-7xl mx-auto px-4
 "
     >
       <div className="navbar-start gap-2">
