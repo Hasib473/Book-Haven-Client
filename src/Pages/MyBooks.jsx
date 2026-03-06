@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
+import { NavLink } from 'react-router';
 
 const MyBooks = () => {
   const { user } = useContext(AuthContext);
@@ -8,10 +9,14 @@ const MyBooks = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/mybooks?email=${user.email}`)
-      .then(res => res.json())
-      .then(data => setMyBooks(data))
-      .catch(err => console.error("Error fetching my books:", err));
+   fetch(`http://localhost:3000/mybooks?email=${user.email}`, {
+  headers: {
+    Authorization: `Bearer ${user?.accessToken}`
+  }
+})
+  .then(res => res.json())
+  .then(data => setMyBooks(data))
+  .catch(err => console.error("Error fetching my books:", err));
 
   }, [user?.email]);
 
@@ -26,7 +31,7 @@ const MyBooks = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-violet-600 text-white">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold">Name</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold">Title</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold">Category</th>
                 <th className="px-6 py-4 text-center text-sm font-semibold">Actions</th>
               </tr>
@@ -45,11 +50,20 @@ const MyBooks = () => {
                   
                     <td className="px-6 py-4 text-center text-sm">
                       <div className="flex justify-center gap-3">
+                      <NavLink to={`/book-details/${book._id}`}>
+                        <button
+                          className="rounded bg-violet-600 px-4 py-1 text-white hover:bg-indigo-700"
+                        >
+                          view Book
+                        </button>
+                        </NavLink>
+                      <NavLink to={`/update-book/${book._id}`}>
                         <button
                           className="rounded bg-indigo-600 px-4 py-1 text-white hover:bg-indigo-700"
                         >
                           Update
                         </button>
+                      </NavLink>
                         <button
                           className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700"
                         >

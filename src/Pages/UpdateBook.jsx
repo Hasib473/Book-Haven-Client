@@ -1,11 +1,31 @@
-// pages/AddBook.jsx
-import React, { useContext } from "react";
-import AuthContext from "../Context/AuthContext";
-import { toast } from "react-toastify";
+import React, {  useContext, useEffect, useState } from 'react';
+import AuthContext from '../Context/AuthContext';
+import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
+export default function UpdateBook() {
+    const [book, setBook] = useState([]);
+    const { user } = useContext(AuthContext);
+    console.log(book);
+    
 
-export default function AddBook() {
-  const {user } = useContext(AuthContext);
-  const handleSubmit = (e) => {
+    const {id} = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/allbooks/${id}`,{
+      headers: {
+        authorization: `Bearer ${user?.accessToken}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setBook(data);
+        console.log(data);
+      });
+  }, [id]);
+
+//   update book 
+
+ const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
@@ -13,14 +33,12 @@ export default function AddBook() {
       genre: e.target.category.value,
       summary: e.target.description.value,
       coverImage: e.target.coverImage.value,
-      userEmail: user?.email || "Unknown",
-      rating : 0,
-      author: user?.name || "Unknown"
+      
 
     };
 
-    fetch('http://localhost:3000/allbooks',{
-      method: 'POST',
+    fetch(`http://localhost:3000/allbooks/${id}`,{
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -28,25 +46,26 @@ export default function AddBook() {
     })
     .then(res => res.json())
     .then(data => {
-      toast.success("Book added successfully");
+      toast.success("Book updated successfully");
     } )
     .catch(error => {
-toast.error("Failed to add book: " + error.message);});
+toast.error("Failed to update book: " + error.message);});
   }
+
   return (
     <section className="min-h-screen  py-20">
       <div className="mx-auto max-w-3xl p-6  rounded-3xl shadow-xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="mb-3 text-4xl font-bold ">Add a New Book</h1>
+          <h1 className="mb-3 text-4xl font-bold ">Update Your Book</h1>
           <p className="text-lg">
-            Fill in the details below to add a new book to The Book Haven.
+            Fill in the details below to update your book in The Book Haven.
           </p>
         </div>
 
         {/* Form Card */}
         <div className="rounded-3xl  p-10 shadow-3xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit}  className="space-y-6">
             {/* Book Name */}
             <div>
               <label className="mb-2 block text-sm font-medium ">
@@ -54,6 +73,7 @@ toast.error("Failed to add book: " + error.message);});
               </label>
               <input
                 type="text"
+                defaultValue={book.title}
                 name="name"
                 placeholder="Enter book name"
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
@@ -66,6 +86,7 @@ toast.error("Failed to add book: " + error.message);});
 
               <select
                 name="category"
+                defaultValue={book.genre}
                 required
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
               >
@@ -85,6 +106,7 @@ toast.error("Failed to add book: " + error.message);});
               </label>
               <input
                 type="text"
+                defaultValue={book.summary}
                 name="description"
                 placeholder="Write a short description about the book"
                 className="w-full resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
@@ -98,6 +120,7 @@ toast.error("Failed to add book: " + error.message);});
               </label>
               <input
                 name="coverImage"
+                defaultValue={book.coverImage}
                 type="url"
                 placeholder="https://example.com/book-cover.jpg"
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
