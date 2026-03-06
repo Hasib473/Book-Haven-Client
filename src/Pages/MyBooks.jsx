@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { NavLink } from 'react-router';
+import { toast } from 'react-toastify';
 
 const MyBooks = () => {
   const { user } = useContext(AuthContext);
@@ -13,12 +14,38 @@ const MyBooks = () => {
   headers: {
     Authorization: `Bearer ${user?.accessToken}`
   }
+
+  
 })
   .then(res => res.json())
   .then(data => setMyBooks(data))
   .catch(err => console.error("Error fetching my books:", err));
 
   }, [user?.email]);
+
+
+ 
+
+  const handleDelete = (id) => {
+
+  fetch(`http://localhost:3000/allbooks/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(() => {
+      toast.success("Book deleted successfully");
+
+      // update UI
+      setMyBooks(prevBooks =>
+        prevBooks.filter(book => book._id !== id)
+      );
+    })
+    .catch(error => console.error("Error deleting book:", error));
+
+};
 
   return (
     <section className="min-h-screen  py-20 px-4">
@@ -64,7 +91,7 @@ const MyBooks = () => {
                           Update
                         </button>
                       </NavLink>
-                        <button
+                        <button onClick={() => handleDelete(book._id)}
                           className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700"
                         >
                           Delete

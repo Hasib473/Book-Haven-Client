@@ -127,13 +127,12 @@ toast.error("Failed to update book: " + error.message);});
               />
             </div>
 
-            {/* Submit Button */}
-            <div className="pt-4">
+            {/* Submit Button */}            <div className="pt-4">
               <button
                 type="submit"
                 className="w-full rounded-full bg-violet-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-indigo-800 hover:shadow-xl"
               >
-                Add Book
+                Update Book
               </button>
             </div>
           </form>
