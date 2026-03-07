@@ -17,7 +17,7 @@ const BookDetails = () => {
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/allbooks/${id}`, {
+        const res = await axios.get(`https://book-haven-server-beige.vercel.app/allbooks/${id}`, {
           headers: {
             authorization: `Bearer ${user?.accessToken}`,
           },
@@ -42,7 +42,7 @@ const BookDetails = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/comments/${id}`);
+        const res = await axios.get(`https://book-haven-server-beige.vercel.app/comments/${id}`);
         setComments(res.data);
       } catch (error) {
         console.log(error);
@@ -64,7 +64,7 @@ const BookDetails = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3000/comments", newComment);
+      const res = await axios.post("https://book-haven-server-beige.vercel.app/comments", newComment);
 
       // Real-time UI update
       setComments((prev) => [...prev, res.data]);

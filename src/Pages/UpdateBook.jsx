@@ -11,7 +11,7 @@ export default function UpdateBook() {
     const {id} = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/allbooks/${id}`,{
+    fetch(`https://book-haven-server-beige.vercel.app/allbooks/${id}`,{
       headers: {
         authorization: `Bearer ${user?.accessToken}`
       }
@@ -37,7 +37,7 @@ export default function UpdateBook() {
 
     };
 
-    fetch(`http://localhost:3000/allbooks/${id}`,{
+    fetch(`https://book-haven-server-beige.vercel.app/allbooks/${id}`,{
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

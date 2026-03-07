@@ -11,7 +11,7 @@ const Home = () => {
  useEffect(() => {
   const getLatestBooks = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/latest_books");
+      const res = await axios.get("https://book-haven-server-beige.vercel.app/latest_books");
       setLatestBooks(res.data);
     } catch (err) {
       console.error("Error fetching latest books:", err);

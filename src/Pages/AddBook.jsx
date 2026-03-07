@@ -23,7 +23,7 @@ export default function AddBook() {
 
 
   try {
-    await axios.post("http://localhost:3000/allbooks", formData);
+    await axios.post("https://book-haven-server-beige.vercel.app/allbooks", formData);
 
     toast.success("Book added successfully");
     e.target.reset();

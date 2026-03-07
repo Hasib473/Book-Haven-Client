@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         Component: AllBooks,
-        loader: () => fetch("http://localhost:3000/allbooks"),
+        loader: () => fetch("https://book-haven-server-beige.vercel.app/allbooks"),
       },
 
       {

@@ -18,7 +18,7 @@ const MyBooks = () => {
   const getMyBooks = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/mybooks?email=${user.email}`,
+        `https://book-haven-server-beige.vercel.app/mybooks?email=${user.email}`,
         {
           headers: {
             Authorization: `Bearer ${user?.accessToken}`,
@@ -41,7 +41,7 @@ const MyBooks = () => {
 
   const handleDelete = (id) => {
   axios
-  .delete(`http://localhost:3000/allbooks/${id}`, {
+  .delete(`https://book-haven-server-beige.vercel.app/allbooks/${id}`, {
     headers: {
       "Content-Type": "application/json",
     },
