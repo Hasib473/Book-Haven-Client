@@ -1,16 +1,40 @@
-# React + Vite
+# 📚 The Book Haven (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **The Book Haven**, a modern web application where users can explore, review, and manage books. This platform allows book lovers to discover books, add their own books, and interact with a clean and responsive interface.
 
-Currently, two official plugins are available:
+🌐 **Live Website:**  
+https://books-havenbh.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📖 Browse and explore books from different categories
+- ➕ Add new books with cover image, description, and category
+- ⭐ Users can rate books and view book details
+- 🔐 Authentication system for secure user access
+- 🌙 Dark / Light mode support for better user experience
+- 📱 Fully responsive design for mobile, tablet, and desktop
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- Firebase Authentication
+- Axios / Fetch API
+- React Toastify
+
+---
+
+## 📂 Project Setup
+
+Clone the project and install dependencies:
+
+```bash
+git clone https://github.com/your-username/book-haven-client.git
+cd book-haven-client
+npm install
+npm run dev
