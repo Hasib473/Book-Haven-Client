@@ -11,7 +11,6 @@ const AllBooks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // loading simulate করার জন্য
     setTimeout(() => {
       setBooks(bookdata);
       setLoading(false);

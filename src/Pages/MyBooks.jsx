@@ -5,46 +5,52 @@ import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import axios from "axios";
 
 const MyBooks = () => {
   const { user } = useContext(AuthContext);
   const [myBooks, setMyBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!user?.email) return;
+ useEffect(() => {
+  if (!user?.email) return;
 
-    fetch(`http://localhost:3000/mybooks?email=${user.email}`, {
-      headers: {
-        Authorization: `Bearer ${user?.accessToken}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTimeout(() => {
-          setMyBooks(data);
-          setLoading(false);
-        }, 800);
-      })
-      .catch((err) => {
-        console.error("Error fetching my books:", err);
+  const getMyBooks = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/mybooks?email=${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user?.accessToken}`,
+          },
+        }
+      );
+
+      setTimeout(() => {
+        setMyBooks(res.data);
         setLoading(false);
-      });
-  }, [user?.email]);
+      }, 800);
+    } catch (err) {
+      console.error("Error fetching my books:", err);
+      setLoading(false);
+    }
+  };
+
+  getMyBooks();
+}, [user?.email]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/allbooks/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        toast.success("Book deleted successfully");
-        setMyBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
-      })
-      .catch((error) => console.error("Error deleting book:", error));
+  axios
+  .delete(`http://localhost:3000/allbooks/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then(() => {
+    toast.success("Book deleted successfully");
+    setMyBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+  })
+  .catch((error) => console.error("Error deleting book:", error));
   };
 
   if (loading) {

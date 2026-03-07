@@ -3,11 +3,12 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { ToastBar } from "react-hot-toast";
+import axios from "axios";
 
 export default function AddBook() {
   const { user } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
 
     const formData = {
@@ -20,23 +21,17 @@ export default function AddBook() {
       author: user?.name || "Unknown",
     };
 
-    fetch("http://localhost:3000/allbooks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        ToastBar
-        .success("Book added successfully");
-        e.target.reset(); // Clear form
-      })
-      .catch((error) =>
-        toast.error("Failed to add book: " + error.message)
-      );
-  };
+
+  try {
+    await axios.post("http://localhost:3000/allbooks", formData);
+
+    toast.success("Book added successfully");
+    e.target.reset();
+  } catch (error) {
+    toast.error("Failed to add book: " + error.message);
+  }
+};
+  
 
   return (
     <section className="min-h-screen py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">

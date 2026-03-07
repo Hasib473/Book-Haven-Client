@@ -2,23 +2,26 @@ import React, { useEffect, useState } from "react";
 import Banner from "../Components/Home/Banner";
 import { BookOfTheWeek, TopGenres } from "../Components/Home/HomeSection";
 import LatestBookCard from "../Components/Home/LatestBookCard";
+import axios from "axios";
 
 const Home = () => {
   const [latestBooks, setLatestBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/latest_books")
-      .then((res) => res.json())
-      .then((data) => {
-        setLatestBooks(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching latest books:", err);
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+  const getLatestBooks = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/latest_books");
+      setLatestBooks(res.data);
+    } catch (err) {
+      console.error("Error fetching latest books:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  getLatestBooks();
+}, []);
 
   return (
     <div className="max-w-7xl mx-auto ">
